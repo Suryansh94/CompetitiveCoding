@@ -1,0 +1,26 @@
+<snippet>
+	<content><![CDATA[
+int par[N],size[N];
+int find(int a)
+{
+    while(par[a]!=a)
+    {
+        par[a]=par[par[a]];
+        a=par[a];
+    }
+    return a;
+}
+void join(int u, int v) {
+    u = find(u);
+    v = find(v);
+    if(u == v) return;
+    if(size[u] < size[v]) swap(u, v);
+    size[u] += size[v];
+    par[v] = u;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>union_find</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

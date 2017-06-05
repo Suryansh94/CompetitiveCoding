@@ -1,0 +1,21 @@
+install packagecontrol , do following for sidebar and theme
+
+setui in packagecontrol == https://packagecontrol.io/packages/Seti_UI  (make change in settings of user , not in package settings)
+
+"preferences.sublime.settings-User" file should look like :
+{
+	"caret_extra_bottom": 3,
+	"caret_extra_top": 3,
+	"caret_extra_width": 2,
+	"color_scheme": "Packages/Theme - Spaceblack/Color Schemes/Spaceblack-alt.tmTheme",
+	"font_size": 11,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"overlay_scroll_bars": "enabled",
+	"theme": "Seti.sublime-theme"
+}
+install theme :
+theme == spacegray / spaceblack

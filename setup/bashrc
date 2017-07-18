@@ -1,0 +1,25 @@
+# Enable tab completion
+source ~/git-completion.bash
+
+# colors!
+IPurple="\[\033[0;95m\]"
+IBlack="\[\033[0;90m\]" 
+black="\[\033[0;30m\]"
+green="\[\033[0;32m\]"
+blue="\[\033[0;34m\]"
+purple="\[\033[0;35m\]"
+reset="\[\033[0m\]"
+ICyan="\[\033[0;96m\]" 
+YELLOW="\[\e[01;33m\]"
+
+RED="\[\e[00;31m\]"
+
+# Change command prompt
+source ~/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
+# '\u' adds the name of the current user to the prompt
+# '\$(__git_ps1)' adds git-related stuff
+# '\W' adds the name of the current directory
+export PS1="$YELLOW\u$ICyan\$(__git_ps1)$green \W $ $ICyan"
+PATH=$PATH:$HOME/anaconda2/bin
+alias g++='g++ -std=c++14'

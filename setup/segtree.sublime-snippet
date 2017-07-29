@@ -1,0 +1,67 @@
+<snippet>
+	<content><![CDATA[
+int a[N];
+ll segtree[4*N];
+ll  delta[4*N];
+class st
+{
+public:
+	void build(int l,int r,int node)
+	{
+		if(l==r)
+			segtree[node]=a[l];
+		else
+		{
+			int mid  = (l+r)/2;
+			build(l,mid,node+node);
+			build(mid+1,r,node+node+1);
+			segtree[node]=min(segtree[node+node],segtree[node+node+1]);
+		}
+	}
+	void prop(int node)
+	{
+		delta[node+node]+=delta[node];
+		delta[node+node+1]+=delta[node];
+		delta[node]=0;
+	}
+	void update(int node)
+	{
+		segtree[node]=min(segtree[node+node]+delta[node+node],segtree[node+node+1]+delta[node+node+1]);
+	}
+	ll query(int node,int l,int r,int ql,int qr)
+	{
+		if(l>qr or r<ql)
+			return inf;
+		if(l>=ql and r<=qr)
+			return segtree[node]+delta[node];
+		// partial case
+		prop(node);
+		int mid = (l+r)/2;
+		ll left_min  = query(node+node,l,mid,ql,qr);
+		ll right_min  = query(node+node+1,mid+1,r,ql,qr);
+		update(node);
+		return min(left_min,right_min);
+	}
+	void range_update(int node,int l,int r,int ql,int qr,int val)
+	{
+		if(l>qr or r<ql)
+			return;
+		if(l>=ql and r<=qr)
+		{
+			delta[node]+=1ll*(val);
+			return;
+		}
+		//partial case
+		prop(node);
+		int mid = (l+r)/2;
+		range_update(node+node,l,mid,ql,qr,val);
+		range_update(node+node+1,mid+1,r,ql,qr,val);
+		update(node);
+	}
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>seg_template</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
